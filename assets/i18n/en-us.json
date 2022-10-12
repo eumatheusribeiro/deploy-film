@@ -1,0 +1,37 @@
+{
+  "label":  {
+    "watch_trailer": "watch trailer",
+    "configurations": "settings",
+    "descobrir": "to discover",
+    "em_breve": "coming soon",
+    "em_cartaz": "now playing",
+    "email": "email",
+    "favoritos": "favorites",
+    "first_name": "fist name",
+    "idioma": "language",
+    "idiomas": {
+      "pt-br": "portuguese/BRA",
+      "en-us": "english/EUA",
+      "es-es": "español/ESP"
+    },
+    "last_name": "last name",
+    "lista_interesses": "list of interests",
+    "menu": "menu",
+    "perfil": "your profile",
+    "resultados_pesquisa": "results of your search...",
+    "sinopse": "synopsis",
+    "phone": "phone",
+    "tema": "dark theme",
+    "nenhum_resultado_encontrado": "no results found",
+    "não encontramos o que você pesquisou": "we couldn't find what you searched for.Try searching again",
+    "go_home": "go home"
+  },
+  "mensagem": {
+    "adicionar_favoritos": "add to favorites list",
+    "adicionar_interesses": "add to interest list",
+    "min_length_and_max_length": "the field must be between {{minLength}} and {{maxLength}} letters",
+    "remover_item": "remove item",
+    "voce_nao_tem_itens_salvos_aqui": "you have no saved items here!",
+    "sorry_there_s_nothing_here": "sorry,there's nothing here"
+  }
+}

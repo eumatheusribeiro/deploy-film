@@ -1,0 +1,37 @@
+{
+  "label":  {
+    "watch_trailer": "ver el trailer",
+    "configurations": "ajustes",
+    "descobrir": "para descubrir",
+    "em_breve": "pronto",
+    "em_cartaz": "en los cines",
+    "email": "email",
+    "favoritos": "favoritos",
+    "first_name": "primer nombre",
+    "idioma": "idioma",
+    "idiomas": {
+      "pt-br": "portugués/BRA",
+      "en-us": "inglés/EUA",
+      "es-es": "español/ESP"
+    },
+    "lista_interesses": "lista de intereses",
+    "last_name": "apellido",
+    "menu": "menú",
+    "perfil": "su perfil",
+    "resultados_pesquisa": "resultados de su búsqueda...",
+    "sinopse": "sinopsis",
+    "phone": "teléfono",
+    "tema": "tema oscuro",
+    "nenhum_resultado_encontrado": "no se han encontrado resultados",
+    "não encontramos o que você pesquisou": "no pudimos encontrar lo que buscaste. Intenta buscar de nuevo",
+    "go_home": "vete a casa"
+  },
+  "mensagem": {
+    "adicionar_favoritos": "agregar a la lista de favoritos",
+    "adicionar_interesses": "agregar a la lista de intereses",
+    "min_length_and_max_length": "el campo debe tener entre {{minLength}} y {{maxLength}} letras",
+    "remover_item": "remover el artículo",
+    "voce_nao_tem_itens_salvos_aqui": "no tienes elementos guardados aquí!",
+    "sorry_there_s_nothing_here": "lo siento, no hay nada aquí"
+  }
+}
