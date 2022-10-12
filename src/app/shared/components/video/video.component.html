@@ -1,0 +1,11 @@
+<div  class="fixed bottom-0 left-0 right-0 top-0 z-20 flex justify-center items-center bg-[#000000af]">
+  <div>
+    <button (click)="close()" class="text-white font-bold text-xl absolute top-14 right-14 ">X</button>
+  </div>
+  <youtube-player
+    [videoId]="videoId"
+    suggestedQuality="highres"
+    [height]="400"
+    [width]="800">
+  </youtube-player>
+</div>
