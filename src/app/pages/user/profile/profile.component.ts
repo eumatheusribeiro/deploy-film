@@ -28,7 +28,7 @@ export class ProfileComponent implements OnInit {
  }
 
  updateData!: UserProfile
- profilePhoto: string = '../../../../assets/images/default-profile.png'
+ profilePhoto: string = '/assets/images/default-profile.png'
 
  imgResultBeforeCompression: string = "";
  imgResultAfterCompression: string = "";
