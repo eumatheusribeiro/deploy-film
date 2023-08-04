@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { finalize, Subject, takeUntil } from 'rxjs';
+import { Subject, finalize, takeUntil } from 'rxjs';
 import { LanguageService } from '../../../core/services/language.service';
 import { TmdbApiService } from '../../../core/services/tmdb-api.service';
-import { Pagination } from '../../../shared/components/paginator/interfaces/pagination';
 import { ListIdEnum } from '../../../shared/enums/list-id-enum';
 import { Movie } from '../../../shared/interfaces/movie';
 
@@ -13,12 +12,12 @@ import { Movie } from '../../../shared/interfaces/movie';
 })
 export class FavoriteComponent implements OnInit {
   title = ListIdEnum.FAVORITOS
-  favoriteList!: Movie[]
+  favoriteList: Movie[] = []
 
   /* flags */
   loading = false
 
-  pagination: Pagination = {
+  pagination: any = {
     numberOfPages:1,
     page:1
   }

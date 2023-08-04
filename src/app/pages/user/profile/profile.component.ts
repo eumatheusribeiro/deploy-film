@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { finalize, Subject, takeUntil } from 'rxjs';
+import { Subject, finalize, takeUntil } from 'rxjs';
 import { ProfileService } from '../../../core/services/profile.service';
 import { isEquals } from '../../../utils/obeject-utils';
 import { UserProfile } from './interfaces/profile';
@@ -33,14 +33,22 @@ export class ProfileComponent implements OnInit {
  imgResultBeforeCompression: string = "";
  imgResultAfterCompression: string = "";
 
+ darkMode = false
+ darkThemeActive = false
+
  /* unsubscribe */
  unsubscribe: Subject<void> = new Subject()
 
  constructor(
    private fb: FormBuilder,
-   private profileService: ProfileService,
-  //  private imageCompress: NgxImageCompressService
- ) { }
+   private profileService: ProfileService
+ ) {
+    if(localStorage.getItem('theme') == 'dark') {
+      this.darkThemeActive = true
+      this.darkMode = true
+      document.documentElement.classList.add('dark')
+    }
+  }
 
  ngOnInit(): void {
    this.buildForm()
@@ -56,7 +64,6 @@ export class ProfileComponent implements OnInit {
 
  public save() {
    this.buttonEnabled = false
-   console.log(this.updateData)
    this.profileService.updateProfile(this.updateData)
    .pipe(takeUntil(this.unsubscribe))
    .subscribe(() => {
@@ -71,23 +78,20 @@ export class ProfileComponent implements OnInit {
      filereader.readAsDataURL(file);
      filereader.onload = () => {
        this.profilePhoto = filereader.result as string
-      // this.compressFile()
-
      }
    }
  }
 
-//  compressFile() {
-//    this.imageCompress
-//    .compressFile(this.profilePhoto, 50, 50) // 50% ratio, 50% quality
-//    .then(
-//      (compressedImage) => {
-//        this.imgResultAfterCompression = compressedImage;
-//        this.form.patchValue({photo: this.imgResultAfterCompression})
-//        console.log("Size in bytes after compression is now:", this.imageCompress.byteCount(compressedImage));
-//      }
-//      );
-//  }
+ public changeTheme() {
+  this.darkMode = !this.darkMode
+  if(this.darkMode) {
+    localStorage.setItem('theme', 'dark')
+    document.documentElement.classList.add('dark')
+  } else{
+    localStorage.removeItem('theme')
+    document.documentElement.classList.remove('dark')
+  }
+}
 
  private buildForm() {
    this.form = this.fb.group({

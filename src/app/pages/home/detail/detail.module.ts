@@ -8,7 +8,6 @@ import { HeaderModule } from '../../../core/header/header.module';
 import { JoinModule } from '../../../core/pipes/join/join.module';
 import { NumberFormatterModule } from '../../../core/pipes/number-formatter/number-formatter.module';
 import { MenuModule } from '../../../shared/components/menu/menu.module';
-import { PaginatorModule } from '../../../shared/components/paginator/paginator.module';
 import { VideoModule } from '../../../shared/components/video/video.module';
 import { IconsModule } from '../../../shared/icons/icons.module';
 import { DetailComponent } from './detail.component';
@@ -23,7 +22,6 @@ import { DetailComponent } from './detail.component';
     CommonModule,
     HeaderModule,
     MenuModule,
-    PaginatorModule,
     MatProgressSpinnerModule,
     JoinModule,
     NumberFormatterModule,

@@ -1,15 +1,13 @@
-<div class="w-[85vw] h-[10vh] ml-[15vw] grid grid-cols-2 items-center px-8 fixed top-0 z-10 bg-white dark:bg-slate-800">
-  <div class="">
-    <form [formGroup]="formGroup" class="">
-      <label class="flex items-center relative">
-        <fa-icon icon="magnifying-glass" class="text-gray-300 absolute left-4"></fa-icon>
-        <input type="text" placeholder="" formControlName="search" class="p-2 pl-10 bg-transparent w-full rounded-lg text-gray-500 dark:text-gray-200 border border-gray-300">
-      </label>
-    </form>
+<div class="w-full px-8 py-4 grid grid-cols-2 items-center z-10 bg-white dark:bg-slate-800">
+  <div class="flex w-3/4">
+    <label class="flex items-center relative">
+      <fa-icon icon="magnifying-glass" class="text-gray-300 absolute left-4"></fa-icon>
+      <input (keydown)="searchTitle()" type="text" placeholder="pesquise aqui..." [(ngModel)]="value" class="p-2 pl-10 bg-transparent w-full rounded-lg text-gray-500 dark:text-gray-200 border border-gray-300">
+    </label>
   </div>
   <div class="flex justify-end items-center">
-    <div class="h-[45px] w-[45px] rounded-full border-2 border-red-500">
-      <img src="/src/assets/images/avatar.jpg" alt="" class="w-full h-full rounded-full">
+    <div class="h-[48px] w-[48px] rounded-full p-px">
+      <img src="../../../assets/images/avatar.jpg" alt="" class="w-full h-full rounded-full">
     </div>
   </div>
 </div>

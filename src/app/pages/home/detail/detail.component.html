@@ -1,79 +1,67 @@
-<!-- cabecalho -->
-<app-header></app-header>
-
-<!-- conteudo -->
-<div class=" h-[100vh] w-full flex bg-cover" [style.background-image]="'url(' + backgroundImage + ')'">
-  <div class="w-[15vw] h-full fixed left-0 bottom-0 border-r-[1px] border-gray-200 border-solid">
-    <app-menu></app-menu>
+<div class="flex pt-4 w-full h-full">
+  <div *ngIf="loading" class="h-[80%] w-full flex flex-column justify-center items-center">
+    <mat-spinner class=""></mat-spinner>
   </div>
-  <div class="h-[90vh] w-[85vw] px-10 pt-5 absolute right-0 bottom-0 bg-[#000000af]">
-    <div *ngIf="loading" class="h-[80%] w-full flex justify-center items-center">
-      <mat-spinner class=""></mat-spinner>
-    </div>
-    <div *ngIf="!loading" class="py-5 w-full h-[80%]">
-      <div class="flex">
-        <div class="w-2/6 px-6">
-          <img src="{{posterImg}}" alt="" class="rounded-xl w-full h-ful">
-        </div>
-        <div class="w-4/6">
-          <div>
-            <div class="flex justify-between">
-              <div>
-                <h1 class="text-3xl text-gray-200 mb-2"><strong>{{movie.title}}</strong>({{movie.release_date | date: 'yyyy'}})</h1>
-                <div class="flex text-gray-200">
-                  <span>
-                    <fa-icon class="text-red-500" [icon]="['far', 'calendar']"></fa-icon>
-                    {{movie.release_date  | date: 'dd/MM/yyyy'}}
-                  </span>
-                  <span class="span ml-2">{{movie.genres | joinPropertiesObject: ',': 'name'}}</span>
-                  <span class="span ml-2">
-                    {{movie.runtime | numberFormatter: typeFormater.HORARIO}}
-                    <fa-icon [icon]="['far', 'clock']"></fa-icon>
-                  </span>
-                </div>
-              </div>
-              <div class="flex flex-col bg-detail-yellow-opacity text-zinc-300 pl-4 pr-3 pb-1 mr-[-40px] rounded-l-full">
-                <div class="flex items-center justify-center gap-1 mt-[-5px] mb-[-10px]">
-                  <span class="text-[35px] font-bold text-yellow-500">{{movie.vote_average | number:'1.1-1'}}</span>
-                  <div class="flex flex-col left-0">
-                    <span class="text-[12px]">/10</span>
-                    <span class="text-[10px]">{{movie.vote_count}}</span>
-                  </div>
-                </div>
-                <div class="border-t-[1px] border-solid border-zinc-400 pt-1">
-                  <ul class="flex gap-1 text-gray-500">
-                    <li *ngFor="let star of stars; let i = index" [ngClass]="{'text-yellow-500': i < completeStars}">
-                      <fa-icon [icon]="['fas','star']" class="fa-xs"></fa-icon>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="text-gray-200 mt-5">
-            <h6 class="font-normal text-lg">{{'label.sinopse' | translate }}</h6>
-            <p class="font-light">{{movie.overview}}</p>
-          </div>
-          <div class="flex justify-end my-4 gap-3">
-            <ng-template [ngIf]="iconsList.favoriteIcon">
-              <button class="bg-[#0000004d] px-1 rounded-md" [matTooltip]="'mensagem.adicionar_favoritos' | translate" (click)="saveFavorite(movie.id)">
-                <fa-icon [icon]="iconsList.favoriteIcon" class="text-pink-500"></fa-icon>
-              </button>
-            </ng-template>
-            <ng-template [ngIf]="iconsList.interestIcon">
-              <button class="bg-[#0000004d] px-2 rounded-md" [matTooltip]="'mensagem.adicionar_interesses' | translate" (click)="saveInterest(movie.id)">
-                <fa-icon [icon]="iconsList.interestIcon" class="text-orange-400"></fa-icon>
-              </button>
-            </ng-template>
+    <div *ngIf="!loading" class="flex py-5 w-full h-full">
+      <div class="w-4/6 relative">
+        <div class="mt-4">
+          <div class="flex justify-between">
             <div>
-              <button class="bg-[#f02c2cbd] text-gray-200 px-2 rounded-md" (click)="watchTrailer()" [disabled]="!videoId" [class.bg-gray-400]="!videoId">
-                {{'label.watch_trailer' | translate | capitalize: true}}
-                <fa-icon icon="video" class="text-orange-400"></fa-icon>
-              </button>
+              <h1 class="text-3xl font-normal mb-2">{{movie.title}}</h1>
+              <div class="flex gap-2">
+                <span class="span ml-2">
+                  <fa-icon icon="clock"></fa-icon>
+                  {{movie.runtime | numberFormatter: typeFormater.HORARIO}}
+                </span>
+                <span class="span ml-2">
+                  {{movie.release_date  | date: 'yyyy'}}
+                </span>
+                <span class="span ml-2">
+                  <fa-icon icon="globe"></fa-icon>
+                  {{movie.production_countries[0].iso_3166_1}}
+                </span>
+                <ul class="flex gap-1 text-gray-500">
+                  <li *ngFor="let star of stars; let i = index" [ngClass]="{'text-yellow-500': i < completeStars}">
+                    <fa-icon [icon]="['fas','star']" class="fa-xs"></fa-icon>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
+        </div>
+        <div class="my-5">
+          <p class="font-normal">{{movie.overview}}</p>
+        </div>
+        <div>
+          <p class="font-normal text-sm"><strong>{{ 'label.genero' | translate}}</strong>: {{movie.genres | joinPropertiesObject: ', ': 'name'}}</p>
+          <p class="font-normal text-sm"><strong>{{ 'label.producao' | translate}}</strong>: {{movie.production_companies | joinPropertiesObject: ', ': 'name'}}</p>
+        </div>
+        <div class="flex justify-end my-4 gap-3">
+          <ng-template [ngIf]="iconsList.favoriteIcon">
+            <button class="px-1 rounded-md" [matTooltip]="'mensagem.adicionar_favoritos' | translate" (click)="saveFavorite(movie.id)">
+              <fa-icon [icon]="iconsList.favoriteIcon" class="text-[#9e9ea7] hover:text-[#dd1313] text-xl"></fa-icon>
+            </button>
+          </ng-template>
+          <ng-template [ngIf]="iconsList.interestIcon">
+            <button class=" px-2 rounded-md" [matTooltip]="'mensagem.adicionar_interesses' | translate" (click)="saveInterest(movie.id)">
+              <fa-icon [icon]="iconsList.interestIcon" class="text-[#9e9ea7] hover:text-[#dd1313] text-xl"></fa-icon>
+            </button>
+          </ng-template>
+          <div>
+            <button class="border-[1px] font-semibold border-[#dd1313] py-2 px-4 rounded-md" (click)="watchTrailer()" [disabled]="!videoId" [class.bg-gray-400]="!videoId">
+              {{'label.watch_trailer' | translate | capitalize: true}}
+              <fa-icon icon="video" class="text-[#dd1313]"></fa-icon>
+            </button>
+          </div>
+        </div>
+        <div class="absolute bottom-0 text-xl">
+          <button class="text-[#dd1313]" (click)="goBack()">
+            <fa-icon icon="arrow-left"></fa-icon>
+          </button>
         </div>
       </div>
+      <div class="w-2/6 px-6">
+        <img src="{{posterImg}}" alt="" class="rounded-xl w-full h-ful">
+      </div>
     </div>
-  </div>
 </div>

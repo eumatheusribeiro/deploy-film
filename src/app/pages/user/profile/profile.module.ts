@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { TranslateModule } from '@ngx-translate/core';
 import { HeaderModule } from '../../../core/header/header.module';
 import { CapitalizeModule } from '../../../core/pipes/capitalize/capitalize.module';
@@ -25,7 +26,8 @@ import { ProfileComponent } from './profile.component';
     IconsModule,
     ReactiveFormsModule,
     FormMessageModule,
-    CapitalizeModule
+    CapitalizeModule,
+    MatSlideToggleModule
   ],
   exports: [
     ProfileComponent

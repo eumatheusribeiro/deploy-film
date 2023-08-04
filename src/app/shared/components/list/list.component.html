@@ -1,34 +1,44 @@
-<div class="grid grid-cols-4 gap-3 bg-white dark:bg-slate-800">
-  <div *ngFor="let item of list" class="bg-zinc-900  h-[352px] w-[235px] scale-90 rounded-xl hover:scale-100 duration-150 relative group border-[1px] border-red-500">
-    <div (click)="getDetails(item.id)">
-      <div class="rounded-xl relative">
-        <span class="text-gray-400 bg-zinc-900 top-6 pl-5 pr-4 rounded-r-full py-1 opacity-80 z-20 absolute">
-          <fa-icon icon="star" [ngClass]="{'text-yellow-500': item.vote_average >= 7.5}"></fa-icon>
-          {{item?.vote_average | number:'1.1-1'}}
-        </span>
-        <img src="https://image.tmdb.org/t/p/original{{item?.poster_path}}" alt="" class="rounded-xl">
+<div class="grid grid-cols-5 bg-white gap-4 dark:bg-slate-800">
+  <ng-template ngFor [ngForOf]="list" let-item>
+    <div class="box h-full w-full border-red-500 duration-150 group" (click)="getDetails(item.id)">
+      <div class="relative background">
+        <img src="https://image.tmdb.org/t/p/w220_and_h330_face{{item?.poster_path}}" alt="" class="banner">
+        <div class="transparent"></div>
       </div>
-      <div class="py-2 px-3 absolute bottom-0">
-        <h1 class="font-semibold text-gray-100 bold text-lg">{{ item.title || item.name}}</h1>
-        <!-- <p class="text-gray-100">{{item.genre_ids[0]}}</p> -->
-      </div>
-      <div class="hidden group-hover:flex absolute bottom-2 pr-3 right-0 gap-2">
-        <ng-template [ngIf]="!displayButtonRemove && icons.favoriteIcon">
-          <button class="bg-white px-1 rounded-md" [matTooltip]="'mensagem.adicionar_favoritos' | translate" (click)="saveFavorite(item.id); $event.stopPropagation()">
-            <fa-icon [icon]="icons.favoriteIcon" class="text-pink-500"></fa-icon>
-          </button>
-        </ng-template>
-        <ng-template [ngIf]="!displayButtonRemove && icons.interestIcon">
-          <button class="bg-white px-1 rounded-md" [matTooltip]="'mensagem.adicionar_interesses' | translate" (click)="saveInterest(item.id); $event.stopPropagation()">
-            <fa-icon [icon]="icons.interestIcon" class="text-orange-400"></fa-icon>
-          </button>
-        </ng-template>
-        <ng-template [ngIf]="displayButtonRemove">
-          <button class="bg-white px-1 rounded-md" [matTooltip]="'mensagem.remover_item' | translate" (click)="removeItem(item.id); $event.stopPropagation()">
-            <fa-icon icon="square-xmark" class="text-red-600"></fa-icon>
-          </button>
-        </ng-template>
+      <div class=" py-4">
+        <div class="flex justify-between">
+          <div class="flex gap-2">
+           <p class="text-sm">
+            <fa-icon icon="star" class="text-sm star" [ngClass]="{'star-plus': item.vote_average >= 7}"></fa-icon>
+            {{item?.vote_average | number:'1.1-1'}}
+            </p>
+            <p class="text-sm">{{item?.release_date | date: 'yyyy' }}</p>
+          </div>
+          <div>
+            <ng-template [ngIf]="!displayButtonRemove && icons.favoriteIcon">
+              <button class="bg-white px-1 rounded-md" [matTooltip]="'mensagem.adicionar_favoritos' | translate" (click)="saveFavorite(item.id); $event.stopPropagation()">
+                <fa-icon [icon]="icons.favoriteIcon" class="text-[#9e9ea7] hover:text-[#dd1313] text-sm"></fa-icon>
+              </button>
+            </ng-template>
+            <ng-template [ngIf]="!displayButtonRemove && icons.interestIcon">
+              <button class="bg-white px-1 rounded-md" [matTooltip]="'mensagem.adicionar_interesses' | translate" (click)="saveInterest(item.id); $event.stopPropagation()">
+                <fa-icon [icon]="icons.interestIcon" class="text-[#9e9ea7] hover:text-[#dd1313] text-sm"></fa-icon>
+              </button>
+            </ng-template>
+            <ng-template [ngIf]="displayButtonRemove">
+              <button class="bg-white px-1 rounded-md" [matTooltip]="'mensagem.remover_item' | translate" (click)="removeItem(item.id); $event.stopPropagation()">
+                <fa-icon icon="square-xmark" class="text-[#9e9ea7] hover:text-[#dd1313] text-sm"></fa-icon>
+              </button>
+            </ng-template>
+          </div>
+        </div>
+        <h6
+          class="title font-bold text-sm"
+          [matTooltip]="item.title || item.name"
+          [matTooltipPosition]="'below'"
+        >{{ item.title || item.name}}</h6>
+        <p class="text-xs text-[#dd1313] font-semibold">{{item?.genre_ids?.[0] | genreName }}</p>
       </div>
     </div>
-  </div>
+  </ng-template>
 </div>

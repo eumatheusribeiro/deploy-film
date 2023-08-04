@@ -1,27 +1,29 @@
-<!-- cabecalho -->
-<app-header></app-header>
-
-<!-- conteudo -->
-<div class=" h-[90vh] w-full flex">
-  <div class="w-[15vw] h-full fixed left-0 bottom-0 border-r-[1px] border-gray-200 border-solid">
-    <app-menu></app-menu>
+<div class="h-[60vh] imagem-principal flex pt-16 pb-8 px-12" [class.skeleton-banner]="loading"
+  style="background-image:url('{{ backgroundImage }}')">
+  <div class="text-[#ffffff] max-w-[64%] flex flex-col justify-between items-start z-10">
+    <div class="pb-4">
+      <h2 class="w-[77%] font-bold pb-4">{{ highlight?.title }}</h2>
+      <div class="flex gap-8 ">
+        <div class="flex gap-2 text-sm"><fa-icon class="text-[#efbb00]" icon="star"></fa-icon>{{ highlight?.vote_average
+          }}</div>
+        <div class="flex gap-2 text-sm"><fa-icon class="" icon="language"></fa-icon>{{ highlight?.original_language |
+          languageName }}</div>
+      </div>
+    </div>
+    <button class="watch" (click)="getDetails(highlight.id)">
+      {{'label.ver_mais' | translate }}
+      <fa-icon class="text-[#ffffff] font-bold" icon="plus"></fa-icon>
+    </button>
   </div>
-  <div class="h-[90vh] w-[85vw] px-10 pt-5 absolute right-0 bottom-0">
-    <h1 class="font-semibold text-2xl text-gray-900 dark:text-gray-200">{{'label.descobrir' | translate | capitalize}}</h1>
-    <div *ngIf="loading" class="h-[80%] w-full flex justify-center items-center">
-      <mat-spinner class=""></mat-spinner>
-    </div>
-    <div *ngIf="!loading" class="py-5 w-full h-[80%]">
-      <app-paginator
-        [pagination]="pagination"
-        (handleNextOrPrevious)="handleNextOrPrevious($event)"
-      >
-        <app-list
-          [list]="movieList"
-          [icons]="iconsList"
-          (saveItem)="save($event)"
-      ></app-list>
-      </app-paginator>
-    </div>
+  <div class="backdrop"></div>
+</div>
+<div class="pt-8">
+  <h1 class="font-semibold pb-2 text-2xl text-gray-900 dark:text-gray-200">{{'label.descobrir' | translate |
+    capitalize}}</h1>
+  <div class="w-full">
+      <app-list [list]="movieList" [icons]="iconsList" (saveItem)="save($event)"></app-list>
+    <ng-template [ngIf]="loading">
+      <app-list-skeleton [skeletonSize]="20"></app-list-skeleton>
+    </ng-template>
   </div>
 </div>

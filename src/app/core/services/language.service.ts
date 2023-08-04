@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { BehaviorSubject } from 'rxjs';
 import { Translate } from '../../shared/interfaces/language';
+import { TmdbApiService } from './tmdb-api.service';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,8 @@ export class LanguageService {
   ]
 
   constructor(
-    private translate: TranslateService
+    private translate: TranslateService,
+    private _tmdbApiService: TmdbApiService
   ) { }
 
   public setLanguage() {
@@ -59,5 +61,13 @@ export class LanguageService {
     localStorage.setItem('language', idioma)
     this.fillOptionsLanguage()
     this.currentValueSubject.next(idioma)
+    this._changeTheGenresList()
+  }
+
+  private _changeTheGenresList() {
+    const language = localStorage.getItem('language') as string
+    this._tmdbApiService.getGenreList(language).subscribe((list) => {
+      localStorage.setItem('genres', JSON.stringify(list))
+    })
   }
 }

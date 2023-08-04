@@ -1,4 +1,5 @@
 export interface Pagination {
   page: number
-  numberOfPages: number
+  pageCount: number
+  rows: number
 }
