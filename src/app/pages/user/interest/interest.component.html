@@ -1,31 +1,19 @@
-<!-- cabecalho -->
-<app-header></app-header>
+<div class="pt-8">
+  <h1 class="font-semibold pb-2 text-2xl text-gray-900 dark:text-gray-200">{{'label.lista_interesses' | translate | capitalize}}</h1>
+  <div *ngIf="loading" class="h-[80%] w-full flex justify-center items-center">
+    <mat-spinner class=""></mat-spinner>
+  </div>
+  <div class="w-full h-[80%]">
+    <app-list
+      *ngIf="interesteList.length > 0"
+      [list]="interesteList"
+      [displayButtonRemove]="true"
+      (removeId)="remove($event)"
+    ></app-list>
+  </div>
+  <!-- <div class="flex justify-end">
+    <p-paginator (onPageChange)="handleNextOrPrevious($event)" [first]="first" [rows]="rows" [totalRecords]="totalItens" [showFirstLastIcon]="false" ></p-paginator>
+  </div> -->
+  </div>
 
-<!-- conteudo -->
-<div class=" h-[90vh] w-full flex">
-  <div class="w-[15vw] h-full fixed left-0 bottom-0 border-r-[1px] border-gray-200 border-solid">
-    <app-menu></app-menu>
-  </div>
-  <div class="h-[90vh] w-[85vw] px-10 pt-5 absolute right-0 bottom-0">
-    <h1 class="font-semibold text-gray-900 dark:text-gray-200 text-2xl">{{'label.lista_interesses' | translate | capitalize}}</h1>
-    <div *ngIf="loading" class="h-[80%] w-full flex justify-center items-center">
-      <mat-spinner class=""></mat-spinner>
-    </div>
-    <div *ngIf="!loading" class="py-5 w-full h-[80%]">
-      <div *ngIf="interesteList.length <= 0" class="w-full h-full flex flex-col justify-center items-center text-gray-900 dark:text-gray-200">
-        <p>{{'mensagem.voce_nao_tem_itens_salvos_aqui' | translate | capitalize}}</p>
-        <div class="flex justify-start items-center gap-2">
-          <fa-icon icon="couch" class="text-red-500 text-4xl"></fa-icon>
-          <p class="text-gray-700 dark:text-gray-300 font-semibold text-4xl">Movie Plus</p>
-        </div>
-      </div>
-      <app-list
-        *ngIf="interesteList.length > 0"
-          [list]="interesteList"
-          [displayButtonRemove]="true"
-          (removeId)="remove($event)"
-      ></app-list>
-    </div>
-  </div>
-</div>
 

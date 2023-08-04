@@ -1,20 +1,20 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { IconsModule } from '../../icons/icons.module';
-import { PaginatorComponent } from './paginator.component';
+import { IconsModule } from 'src/app/shared/icons/icons.module';
+import { FooterComponent } from './footer.component';
 
 
 
 @NgModule({
   declarations: [
-    PaginatorComponent
+    FooterComponent
   ],
   imports: [
     CommonModule,
     IconsModule
   ],
   exports: [
-    PaginatorComponent
+    FooterComponent
   ]
 })
-export class PaginatorModule { }
+export class FooterModule { }

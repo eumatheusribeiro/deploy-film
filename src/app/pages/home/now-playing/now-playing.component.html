@@ -1,27 +1,17 @@
-<!-- cabecalho -->
-<app-header></app-header>
 
-<!-- conteudo -->
-<div class=" h-[90vh] w-full flex">
-  <div class="w-[15vw] h-full fixed left-0 bottom-0 border-r-[1px] border-gray-200 border-solid">
-    <app-menu></app-menu>
+<div class="pt-8">
+  <h1 class="font-semibold pb-2 text-2xl text-gray-900 dark:text-gray-200">{{'label.em_cartaz' | translate | capitalize}}</h1>
+  <div *ngIf="loading" class="h-[80%] w-full flex justify-center items-center">
+    <mat-spinner class=""></mat-spinner>
   </div>
-  <div class="h-[90vh] w-[85vw] px-10 pt-5 absolute right-0 bottom-0">
-    <h1 class="font-semibold text-2xl text-gray-900 dark:text-gray-200">{{ 'label.em_cartaz' | translate | capitalize }}</h1>
-    <div *ngIf="loading" class="h-[80%] w-full flex justify-center items-center">
-      <mat-spinner class=""></mat-spinner>
-    </div>
-    <div *ngIf="!loading" class="py-5 w-full h-[80%]">
-      <app-paginator
-        [pagination]="pagination"
-        (handleNextOrPrevious)="handleNextOrPrevious($event)"
-      >
-        <app-list
-          [list]="movieList"
-          [icons]="iconsList"
-          (saveItem)="save($event)"
-      ></app-list>
-      </app-paginator>
-    </div>
+  <div class="w-full h-[80%]">
+    <app-list
+      [list]="movieList"
+      [icons]="iconsList"
+      (saveItem)="save($event)"
+    ></app-list>
+  </div>
+  <div class="flex justify-end">
+    <p-paginator (onPageChange)="handleNextOrPrevious($event)" [first]="first" [rows]="rows" [totalRecords]="totalItens" [showFirstLastIcon]="false" ></p-paginator>
   </div>
 </div>

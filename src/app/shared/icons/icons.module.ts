@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faCalendar as farCalendar, faClock as farClock, faStar as farStar } from '@fortawesome/free-regular-svg-icons';
-import { faBookmark, faChevronLeft, faChevronRight, faCouch, faFlag, faHeart, faHeartCrack, faHome, faLightbulb, faMagnifyingGlass, faPencil, faQuestion, faSquareXmark, faStar, faStarHalfStroke, faStepForward, faTicket, faUser, faVideo } from '@fortawesome/free-solid-svg-icons';
+import { faFacebook, faTwitch, faTwitter, faYoutube } from '@fortawesome/free-brands-svg-icons';
+import { faPlayCircle, faCalendar as farCalendar, faClock as farClock, faStar as farStar } from '@fortawesome/free-regular-svg-icons';
+import { faArrowLeft, faBookmark, faCalendar, faChevronCircleLeft, faChevronCircleRight, faChevronLeft, faChevronRight, faClock, faCouch, faDoorOpen, faFlag, faGlobe, faHeart, faHeartCrack, faHome, faLanguage, faLightbulb, faMagnifyingGlass, faPencil, faPlus, faQuestion, faSquareXmark, faStar, faStarHalfStroke, faStepForward, faTicket, faUser, faVideo } from '@fortawesome/free-solid-svg-icons';
 
 @NgModule({
   exports: [
@@ -32,7 +33,21 @@ export class IconsModule {
       faFlag,
       faSquareXmark,
       faPencil,
-      faQuestion
+      faQuestion,
+      faChevronCircleLeft,
+      faChevronCircleRight,
+      faCalendar,
+      faLanguage,
+      faGlobe,
+      faClock,
+      faArrowLeft,
+      faPlus,
+      faDoorOpen,
+      faFacebook,
+      faYoutube,
+      faTwitch,
+      faTwitter,
+      faPlayCircle
     );
   }
  }

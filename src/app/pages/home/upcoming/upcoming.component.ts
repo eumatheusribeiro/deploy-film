@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { finalize, Subject, takeUntil } from 'rxjs';
+import { Subject, finalize, takeUntil } from 'rxjs';
 import { LanguageService } from '../../../core/services/language.service';
 import { TmdbApiService } from '../../../core/services/tmdb-api.service';
-import { Pagination } from '../../../shared/components/paginator/interfaces/pagination';
 import { IconList } from '../../../shared/interfaces/comum';
 import { Movie } from '../../../shared/interfaces/movie';
 
@@ -24,10 +23,9 @@ iconsList: IconList = {
 loading = false
 
 /* paginacao */
-pagination: Pagination = {
-  numberOfPages:1,
-  page:1
-}
+first = 0
+rows: number = 20;
+totalItens: number = 20
 
 /* idioma */
 language!: string
@@ -45,6 +43,7 @@ unsubscribe = new Subject<void>()
    .pipe(takeUntil(this.unsubscribe))
    .subscribe((value) => {
      this.language = value
+     this.movieList = []
      this.getData()
    })
  }
@@ -54,16 +53,15 @@ ngOnDestroy(): void {
   this.unsubscribe.complete()
 }
 
-public handleNextOrPrevious(nextOrPrevious: number) {
+public handleNextOrPrevious(event: any) {
   this.loading = true
-  this.movieService.getComingSoon(this.language, nextOrPrevious)
+  this.movieService.getComingSoon(this.language, event.page + 1)
     .pipe(takeUntil(this.unsubscribe), finalize(() => this.loading = false))
     .subscribe((lista) => {
       this.movieList = lista?.results
-      this.pagination = {
-        numberOfPages: lista?.total_pages,
-        page: lista?.page
-      }
+      scrollTo({
+        top: 0,
+      })
     })
 }
 
@@ -84,10 +82,7 @@ private getData() {
     .pipe(takeUntil(this.unsubscribe), finalize(() => this.loading = false))
     .subscribe((lista) => {
       this.movieList = lista?.results
-      this.pagination = {
-        numberOfPages: lista?.total_pages,
-        page: lista?.page
-      }
+      this.totalItens = lista.total_results
     })
 }
 }

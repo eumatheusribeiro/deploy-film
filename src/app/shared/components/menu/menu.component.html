@@ -1,38 +1,41 @@
-<div class="flex flex-col h-full py-8 pl-4 gap-8 relative bg-white dark:bg-slate-800 font-normal">
-  <div class="flex flex-col justify-start items-center pr-1">
-    <img src="/assets/images/logo.png" alt="" class="w-[70px]">
-    <a [routerLink]="['/']" class="text-[#8b7070] font-semibold text-2xl">{{'movie search' | capitalize:true}}</a>
+<div class="flex flex-col h-full py-8 pl-4 gap-8 relative border-r-[1px] bg-white dark:bg-slate-800 font-normal ">
+  <div class="flex flex-col justify-start items-start pr-1">
+    <!-- <img src="/assets/images/logo.png" alt="" class="w-[70px]"> -->
+    <a [routerLink]="['/']" class="font-semibold">
+        <p class="text-[#00000] text-sm">{{'Super' | capitalize:true}}</p>
+        <strong class="text-[#ff0000] text-2xl leading-4">{{'Trailers' | capitalize:true}}</strong>
+    </a>
   </div>
  <div class="flex flex-col gap-2">
-  <span class="text-gray-400">{{'label.menu' | translate | capitalize }}</span>
-  <a class="ml-2 text-gray-500 dark:text-gray-300" href="" [routerLink]="['/discover']" routerLinkActive="border-r-4 border-solid border-red-500 text-gray-900 dark:text-gray-200">
-    <fa-icon icon="home" routerLinkActive="text-red-500"></fa-icon>
+  <span class="text-zinc-900 text-xs font-semibold">{{'label.menu' | translate | capitalize }}</span>
+  <a class="flex gap-3 ml-2 text-sm text-gray-500 dark:text-gray-300" href="" [routerLink]="['/discover']" routerLinkActive="border-r-4 border-solid border-[#dd1313] text-gray-900 dark:text-gray-200 font-bold">
+    <fa-icon icon="home" routerLinkActive="text-[#dd1313]"></fa-icon>
     {{'label.descobrir' | translate | capitalize }}
   </a>
-  <a [routerLink]="['/emCartaz']" class="ml-2 text-gray-500 dark:text-gray-300" routerLinkActive="border-r-4 border-solid border-red-500 text-gray-900 dark:text-gray-200">
-    <fa-icon icon="ticket" routerLinkActive="text-red-500"></fa-icon>
+  <a [routerLink]="['/emCartaz']" class="flex gap-3 ml-2 text-sm text-gray-500 dark:text-gray-300" routerLinkActive="border-r-4 border-solid border-[#dd1313] text-gray-900 dark:text-gray-200 font-bold">
+    <fa-icon icon="ticket" routerLinkActive="text-[#dd1313]"></fa-icon>
     {{'label.em_cartaz' | translate | capitalize }}
   </a>
-  <a [routerLink]="['/proximos']" class="ml-2 text-gray-500 dark:text-gray-300" routerLinkActive="border-r-4 border-solid border-red-500 text-gray-900 dark:text-gray-200">
-    <fa-icon icon="step-forward" routerLinkActive="text-red-500"></fa-icon>
+  <a [routerLink]="['/proximos']" class="flex gap-3 ml-2 text-sm text-gray-500 dark:text-gray-300" routerLinkActive="border-r-4 border-solid border-[#dd1313] text-gray-900 dark:text-gray-200 font-bold">
+    <fa-icon icon="calendar" routerLinkActive="text-[#dd1313]"></fa-icon>
     {{'label.em_breve' | translate | capitalize }}
   </a>
-  <a [routerLink]="['/user/favoritos']" class="ml-2 text-gray-500 dark:text-gray-300" routerLinkActive="border-r-4 border-solid border-red-500 text-gray-900 dark:text-gray-200">
-    <fa-icon icon="heart" routerLinkActive="text-red-500"></fa-icon>
+  <a [routerLink]="['/user/favoritos']" class="flex gap-3 ml-2 text-sm text-gray-500 dark:text-gray-300" routerLinkActive="border-r-4 border-solid border-[#dd1313] text-gray-900 dark:text-gray-200 font-bold">
+    <fa-icon icon="heart" routerLinkActive="text-[#dd1313]"></fa-icon>
     {{'label.favoritos' | translate | capitalize }}
   </a>
-  <a [routerLink]="['/user/listaInteresses']" class="ml-2 text-gray-500 dark:text-gray-300" routerLinkActive="border-r-4 border-solid border-red-500 text-gray-900 dark:text-gray-200">
-    <fa-icon icon="bookmark" routerLinkActive="text-red-500"></fa-icon>
+  <a [routerLink]="['/user/listaInteresses']" class="flex gap-3 ml-2 text-sm text-gray-500 dark:text-gray-300" routerLinkActive="border-r-4 border-solid border-[#dd1313] text-gray-900 dark:text-gray-200 font-bold">
+    <fa-icon icon="bookmark" routerLinkActive="text-[#dd1313]"></fa-icon>
     {{'label.lista_interesses' | translate | capitalize }}
   </a>
  </div>
  <div class="flex flex-col gap-2">
-  <span class="text-gray-400">{{'label.configurations' | translate | capitalize }}</span>
-  <a class="ml-2 text-gray-500 dark:text-gray-300" [routerLink]="['/user/perfil']" routerLinkActive="border-r-4 border-solid border-red-500 text-gray-900 dark:text-gray-200">
-    <fa-icon icon="user" routerLinkActive="text-red-500"></fa-icon>
+  <span class="text-zinc-900 text-xs font-semibold">{{'label.configurations' | translate | capitalize }}</span>
+  <a class="flex gap-3 ml-2 text-sm text-gray-500 dark:text-gray-300" [routerLink]="['/user/perfil']" routerLinkActive="border-r-4 border-solid border-[#e7e7e9] text-gray-900 dark:text-gray-200 font-bold">
+    <fa-icon icon="user" routerLinkActive="text-[#dd1313]"></fa-icon>
     {{'label.perfil' | translate | capitalize }}
   </a>
-  <div class="ml-2 text-gray-500 dark:text-gray-300 flex gap-2">
+  <div class="flex gap-3 ml-2 text-sm text-gray-500 dark:text-gray-300 flex gap-2">
     <fa-icon icon="flag"></fa-icon>
     <button mat-button [matMenuTriggerFor]="menu">{{'label.idioma' | translate | capitalize }}</button>
     <mat-menu #menu="matMenu">
@@ -41,6 +44,9 @@
   </div>
  </div>
  <div class="absolute bottom-4">
-  <mat-slide-toggle [color]="'warn'" [checked]="darkThemeActive" class="text-gray-500 dark:text-gray-400 " (click)="changeTheme()">{{'label.tema' | translate  | capitalize }}</mat-slide-toggle>
+    <button class="flex gap-2 text-zinc-900 text-sm font-semibold">
+      <fa-icon class="text-[#dd1313]" icon="door-open"></fa-icon>
+      Logout
+    </button>
  </div>
 </div>

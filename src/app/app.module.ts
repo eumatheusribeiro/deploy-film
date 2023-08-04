@@ -8,8 +8,12 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { FooterModule } from './core/footer/footer.module';
+import { HeaderModule } from './core/header/header.module';
 import { HomeRoutingModule } from './pages/home/home-routing.module';
 import { UserRoutingModule } from './pages/user/user-routing.module';
+import { MenuModule } from './shared/components/menu/menu.module';
+import { InfiniteScrollModule } from './shared/directives/infinite-scroll/infinite-scroll.module';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http)
@@ -21,6 +25,13 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   imports: [
     BrowserModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
     AppRoutingModule,
     HomeRoutingModule,
     UserRoutingModule,
@@ -28,13 +39,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatTabsModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
-    })
+    MenuModule,
+    HeaderModule,
+    FooterModule,
+    InfiniteScrollModule
   ],
   providers: [],
   bootstrap: [AppComponent]

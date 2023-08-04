@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PaginatorComponent } from './paginator.component';
+import { ListSkeletonComponent } from './list-skeleton.component';
 
-describe('PaginatorComponent', () => {
-  let component: PaginatorComponent;
-  let fixture: ComponentFixture<PaginatorComponent>;
+describe('ListSkeletonComponent', () => {
+  let component: ListSkeletonComponent;
+  let fixture: ComponentFixture<ListSkeletonComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PaginatorComponent ]
+      declarations: [ ListSkeletonComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(PaginatorComponent);
+    fixture = TestBed.createComponent(ListSkeletonComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

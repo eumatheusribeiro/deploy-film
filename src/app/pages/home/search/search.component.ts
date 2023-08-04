@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { finalize, Subject, takeUntil } from 'rxjs';
+import { Subject, finalize, takeUntil } from 'rxjs';
 import { TmdbApiService } from '../../../core/services/tmdb-api.service';
-import { Pagination } from '../../../shared/components/paginator/interfaces/pagination';
 import { IconList } from '../../../shared/interfaces/comum';
 import { Movie } from '../../../shared/interfaces/movie';
 import { LanguageService } from './../../../core/services/language.service';
@@ -21,11 +20,16 @@ export class SearchComponent implements OnInit {
     interestIcon: 'bookmark'
   }
 
+  /* paginacao */
+  first = 0
+  rows: number = 20;
+  totalItens: number = 20
+
   /* flags */
   loading = false
 
   /* paginacao */
-  pagination: Pagination = {
+  pagination: any = {
     numberOfPages:1,
     page:1
   }
@@ -46,7 +50,8 @@ export class SearchComponent implements OnInit {
     .pipe(takeUntil(this.unsubscribe))
     .subscribe((value) => {
       this.language = value
-      this.getaData()
+      this.list = []
+      this._getData()
     })
   }
 
@@ -55,17 +60,18 @@ export class SearchComponent implements OnInit {
     this.unsubscribe.complete()
   }
 
-  public handleNextOrPrevious(nextOrPrevious: number) {
+  public handleNextOrPrevious(event: any) {
     this.loading = true
-    this.movieService.discoverMovies(this.language, nextOrPrevious)
+    this.movieService.discoverMovies(this.language, event.page + 1)
       .pipe(takeUntil(this.unsubscribe), finalize(() => this.loading = false))
       .subscribe((lista) => {
         this.list = lista?.results
-        this.pagination = {
-          numberOfPages: lista?.total_pages,
-          page: lista?.page
-        }
+        scrollTo({
+          top: 0
+        })
       })
+
+     const lista: number[] = [0, 1]
   }
 
   public save(item: any) {
@@ -75,11 +81,11 @@ export class SearchComponent implements OnInit {
     this.movieService.saveItemByID(item.listId, infoItem)
       .pipe(takeUntil(this.unsubscribe))
       .subscribe(() => {
-        this.getaData()
+        this._getData()
       })
   }
 
-  private getaData() {
+  private _getData() {
     this.loading = true
     this.activatedRoute.queryParams
     .pipe(takeUntil(this.unsubscribe))
@@ -90,6 +96,7 @@ export class SearchComponent implements OnInit {
     .pipe(takeUntil(this.unsubscribe), finalize(() => this.loading = false))
     .subscribe((lista) => {
       this.list = lista?.results
+      this.totalItens = lista.total_results
     })
     })
   }

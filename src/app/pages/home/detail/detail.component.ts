@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { finalize, Subject, takeUntil } from 'rxjs';
+import { Subject, finalize, takeUntil } from 'rxjs';
 import { LanguageService } from '../../../core/services/language.service';
 import { TmdbApiService } from '../../../core/services/tmdb-api.service';
 import { VideoInjectorService } from '../../../core/services/video-injector.service';
@@ -20,7 +20,7 @@ export class DetailComponent implements OnInit {
   typeFormater = NumberFormatterEnum
   backgroundImage = 'https://image.tmdb.org/t/p/original'
   posterImg = ''
-  stars = Array(10)
+  stars = Array(5)
   completeStars = 0
   videoId = ''
 
@@ -69,7 +69,7 @@ export class DetailComponent implements OnInit {
       this.movie = dados
       this.backgroundImage += dados.backdrop_path ?? ''
       this.posterImg = dados.poster_path ? 'https://image.tmdb.org/t/p/original' + dados.poster_path : ''
-      this.completeStars = Math.trunc(dados.vote_average)
+      this.completeStars = Math.trunc(dados.vote_average / 2)
       this.movieService.getVideoByID(dados.id, this.language)
       .pipe(takeUntil(this.unsubscribe), finalize(() => this.loading = false))
       .subscribe((videos) => {
@@ -111,4 +111,7 @@ export class DetailComponent implements OnInit {
     })
   }
 
+  goBack() {
+    window.history.go(-1)
+  }
 }

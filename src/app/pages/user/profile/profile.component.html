@@ -1,59 +1,46 @@
-<!-- cabecalho -->
-<app-header></app-header>
 
-<!-- conteudo -->
-<div class=" h-[90vh] w-full flex">
-  <div class="w-[15vw] h-full fixed left-0 bottom-0 border-r-[1px] border-gray-200 border-solid">
-    <app-menu></app-menu>
-  </div>
-  <div class="h-[90vh] w-[85vw] px-10 pt-5 absolute right-0 bottom-0">
-    <h1 class="font-semibold text-gray-900 dark:text-gray-200 text-2xl">{{ 'label.perfil' | translate | capitalize }}</h1>
-    <div *ngIf="loading" class="h-[80%] w-full flex justify-center items-center">
-      <mat-spinner class=""></mat-spinner>
-    </div>
-    <div *ngIf="!loading" class="py-5 w-full h-[80%]">
-        <form [formGroup]="form" class="py-5 w-full h-[80%]">
-          <div class="flex items-center gap-6 h-[150px]">
-              <div class="h-[100px] w-[100px] rounded-full border-2 border-red-500 relative">
-                <img [src]="profilePhoto" alt="" class="w-full h-full rounded-full">
-                <button (click)="atualizarImagem.click()" class="w-5 h-5 absolute rounded-full bg-red-600 text-white right-0 bottom-0">
-                  <fa-icon icon="pencil" class="fa-xs text-white"></fa-icon>
-                </button>
-                <input #atualizarImagem hidden type="file" (change)="updatePhoto($event)">
-              </div>
-            <div class="text-gray-500 dark:text-gray-200">
-              <h6>{{dataProfile.first_name + ' ' + dataProfile.last_name}}</h6>
-              <p>{{dataProfile.email}}</p>
-            </div>
-          </div>
-          <div class="grid grid-cols-2 gap-3">
-            <label class="text-gray-500 dark:text-gray-200">
-              {{'label.first_name' | translate}}
-              <input type="text" placeholder="" formControlName="first_name" class="p-2 bg-transparent w-full rounded-lg text-gray-500 dark:text-gray-200 border border-gray-300">
-              <app-form-message *ngIf="form.get('first_name')?.getError('required')" [message]="'mensagem.required' | translate"></app-form-message>
-              <app-form-message *ngIf="form.get('first_name')?.errors && !form.get('first_name')?.getError('required')" [message]="'mensagem.min_length_and_max_length' | translate: {minLength: 5, maxLength: 10}"></app-form-message>
-            </label>
-            <label class="text-gray-500 dark:text-gray-200">
-              {{'label.last_name' | translate}}
-              <input type="text" placeholder="" formControlName="last_name" class="p-2 bg-transparent w-full rounded-lg text-gray-500 dark:text-gray-200 border border-gray-300">
-              <app-form-message *ngIf="form.get('last_name')?.getError('required')" [message]="'mensagem.required' | translate"></app-form-message>
-              <app-form-message *ngIf="form.get('last_name')?.errors && !form.get('last_name')?.getError('required')" [message]="'mensagem.min_length_and_max_length' | translate: {minLength: 5, maxLength: 10}"></app-form-message>
-            </label>
-            <label class="text-gray-500 dark:text-gray-200">
-              {{'label.email' | translate}}
-              <input type="email" placeholder="" formControlName="email" class="p-2 bg-transparent w-full rounded-lg text-gray-500 dark:text-gray-200 border border-gray-300">
-              <app-form-message *ngIf="form.get('email')?.getError('required')" [message]="'mensagem.required' | translate"></app-form-message>
-            </label>
-            <label class="text-gray-500 dark:text-gray-200">
-              {{'label.phone' | translate}}
-              <input type="tel" placeholder="" formControlName="phone" class="p-2 bg-transparent w-full rounded-lg text-gray-500 dark:text-gray-200 border border-gray-300">
-            </label>
-          </div>
-        </form>
-        <div class="w-full flex justify-center p-14">
-          <button [disabled]="!form" class="text-gray-500 dark:text-gray-200 border border-red-500 px-6 py-3 rounded-lg font-semibold" [ngClass]="{'bg-red-500 text-gray-100': buttonEnabled == true}" (click)="save()">Save changes</button>
+<div class="pt-8">
+  <h1 class="font-semibold text-gray-900 dark:text-gray-200 text-2xl">{{ 'label.perfil' | translate | capitalize }}</h1>
+  <form [formGroup]="form" class="pB-5 w-full h-[90%]">
+    <div class="flex items-center gap-6 h-[150px]">
+        <div class="h-[100px] w-[100px] rounded-full border-2 border-red-500 relative">
+          <img [src]="profilePhoto" alt="" class="w-full h-full rounded-full">
+          <button (click)="atualizarImagem.click()" class="w-5 h-5 absolute rounded-full bg-red-600 text-white right-0 bottom-0">
+            <fa-icon icon="pencil" class="fa-xs text-white"></fa-icon>
+          </button>
+          <input #atualizarImagem hidden type="file" (change)="updatePhoto($event)">
         </div>
+      <div class="text-gray-500 dark:text-gray-200">
+        <h6>{{dataProfile.first_name + ' ' + dataProfile.last_name}}</h6>
+        <p>{{dataProfile.email}}</p>
       </div>
     </div>
+    <div class="grid grid-cols-2 gap-3">
+      <label class="text-gray-500 dark:text-gray-200">
+        {{'label.first_name' | translate}}
+        <input type="text" placeholder="" formControlName="first_name" class="p-2 bg-transparent w-full rounded-lg text-gray-500 dark:text-gray-200 border border-gray-300">
+        <app-form-message *ngIf="form.get('first_name')?.value?.length > 0 && form.get('first_name')?.getError('required')" [message]="'mensagem.required' | translate"></app-form-message>
+        <app-form-message *ngIf="form.get('first_name')?.errors && !form.get('first_name')?.getError('required')" [message]="'mensagem.min_length_and_max_length' | translate: {minLength: 5, maxLength: 10}"></app-form-message>
+      </label>
+      <label class="text-gray-500 dark:text-gray-200">
+        {{'label.last_name' | translate}}
+        <input type="text" placeholder="" formControlName="last_name" class="p-2 bg-transparent w-full rounded-lg text-gray-500 dark:text-gray-200 border border-gray-300">
+        <app-form-message *ngIf="form.get('last_name')?.value?.length > 0 && form.get('last_name')?.getError('required')" [message]="'mensagem.required' | translate"></app-form-message>
+        <app-form-message *ngIf="form.get('last_name')?.errors && !form.get('last_name')?.getError('required')" [message]="'mensagem.min_length_and_max_length' | translate: {minLength: 5, maxLength: 10}"></app-form-message>
+      </label>
+      <label class="text-gray-500 dark:text-gray-200">
+        {{'label.email' | translate}}
+        <input type="email" placeholder="" formControlName="email" class="p-2 bg-transparent w-full rounded-lg text-gray-500 dark:text-gray-200 border border-gray-300">
+        <app-form-message *ngIf="form.get('email')?.value?.length > 0 && form.get('email')?.getError('required')" [message]="'mensagem.required' | translate"></app-form-message>
+      </label>
+      <label class="text-gray-500 dark:text-gray-200">
+        {{'label.phone' | translate}}
+        <input type="tel" placeholder="" formControlName="phone" class="p-2 bg-transparent w-full rounded-lg text-gray-500 dark:text-gray-200 border border-gray-300">
+      </label>
+    </div>
+  </form>
+  <mat-slide-toggle [color]="'warn'" [checked]="darkThemeActive" class="text-gray-500 dark:text-gray-400 mt-4" (click)="changeTheme()">{{'label.tema' | translate  | capitalize }}</mat-slide-toggle>
+  <div class="w-full flex justify-center my-8">
+    <button [disabled]="!form" class="text-gray-500 hover:border-red-500 dark:text-gray-200 border border-gray-500 px-6 py-3 rounded-lg font-semibold" [ngClass]="{'bg-red-500 text-gray-100': buttonEnabled == true}" (click)="save()">Save changes</button>
+  </div>
 </div>
-

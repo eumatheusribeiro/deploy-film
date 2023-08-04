@@ -1,6 +1,37 @@
 /* You can add global styles to this file, and also import other style files */
 @import "../node_modules\@angular\material\prebuilt-themes\deeppurple-amber.css";
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+@import "primeicons/primeicons.css";
+@import './variables.scss';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html, body {
+  @include lightScroll();
+  height: 100%;
+}
+
+body {
+  overflow: hidden;
+}
+
+.p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+  background: #ffefef !important;
+  border-color: #ffefef !important;
+  color: #d81d1d !important;
+}
+
+.p-paginator .p-paginator-first:not(.p-disabled):not(.p-highlight):hover, .p-paginator .p-paginator-prev:not(.p-disabled):not(.p-highlight):hover, .p-paginator .p-paginator-next:not(.p-disabled):not(.p-highlight):hover, .p-paginator .p-paginator-last:not(.p-disabled):not(.p-highlight):hover {
+  background: #ffefef !important;
+}
+
+.p-paginator .p-paginator-first.p-link:focus,
+.p-paginator .p-paginator-prev.p-link:focus,
+.p-paginator .p-paginator-next.p-link:focus,
+.p-paginator .p-paginator-last.p-link:focus,
+.p-paginator .p-paginator-pages .p-paginator-page.p-highlight.p-link:focus {
+  box-shadow: 0 0 0 0.2rem #febfbf !important;
+}

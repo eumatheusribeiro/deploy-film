@@ -1,0 +1,20 @@
+<div class="grid grid-cols-5 bg-white gap-4 dark:bg-slate-800">
+  <div *ngFor="let i of _skeletonList">
+    <div class="item">
+      <div class="img"></div>
+      <div class="py-2">
+        <div class="flex justify-between margin">
+          <div class="flex gap-2">
+            <fa-icon icon="star" class="star"></fa-icon>
+            <p class="note"></p>
+          </div>
+          <div>
+            <p class="controls"></p>
+          </div>
+        </div>
+        <h6 class="margin title"></h6>
+        <div class="genre"></div>
+      </div>
+    </div>
+  </div>
+</div>

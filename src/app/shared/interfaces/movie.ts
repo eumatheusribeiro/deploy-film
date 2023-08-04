@@ -26,9 +26,23 @@ export interface Movie {
   runtime: number,
   tagline: string,
   spoken_languages: LanguageApi
+  production_countries: ProductionCountry[]
+  production_companies: ProductionCompany[]
 }
 
 export interface Genre {
   id: number
   name: string
 }
+
+export interface ProductionCountry {
+  iso_3166_1: string
+  name: string
+}
+
+export interface ProductionCompany {
+  id: number
+  logo_path: string
+  name: string
+  origin_country: string
+  }
